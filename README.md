@@ -191,16 +191,11 @@ nigiri faucet --liquid <marina_address> 25 <asset_hash>
 - Connect all the things
 
 ```html
-<button onclick="(async function () {
-					// prompt user to enable
-        	await window.marina.enable();
-      })();">
+<button onclick="(async function () { await window.marina.enable() })();">
   Connect
 </button>
 
-<button onclick="(async function () {
-        await window.marina.disable();
-      })();">
+<button onclick="(async function () { await window.marina.disable() })();">
   Disconnect
 </button>
 ```
@@ -228,12 +223,7 @@ nigiri faucet --liquid <marina_address> 25 <asset_hash>
     }
   </script>
 
-  <button onclick="(async function () {
-	      // detect user permission and display balances
-				 window.marina.on('ENABLED', showBalances);
-					// prompt user to enable
-        	await window.marina.enable();
-      })();">
+  <button onclick="(async function () { window.marina.on('ENABLED', showBalances); await window.marina.enable(); })()">
   Connect
 </button>  
 ```
