@@ -159,67 +159,83 @@ nigiri faucet --liquid <marina_address> 25 <asset_hash>
 
 ### 👩‍🔧 Write our first Liquid web app!
 
-Create an `index.html` file and open with your browser
+- Create an `index.html` file and open with your browser
+
 
 ```html
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Marina App</title>
-    <meta charset="UTF-8" />
-    <script>
-      async function showBalances() {
-        const div = document.getElementById("balance");
-        const balances = await window.marina.getBalances();
-        balances.forEach((balance, index) => {
-          asset = document.createElement("p");
-          asset.textContent = balance.asset.ticker;
-          div.appendChild(asset);
 
-          amount = document.createElement("p");
-          amount.textContent = balance.amount;
-          asset.appendChild(amount);
+<head>
+  <title>Marina App</title>
+  <meta charset="UTF-8" />
+</head>
 
-          separator = document.createElement("hr");
-          amount.appendChild(separator);
-        });
-      }
-    </script>
-  </head>
+<body>
+  <button>
+    Connect
+  </button>
 
-  <body>
-    <button
-      onclick="(async function () {
-				 
-				 // detect user permission and display balances
-				 window.marina.on('ENABLED', showBalances);
+  <button>
+    Disconnect
+  </button>
 
-					// prompt user to enable
-        	await window.marina.enable();
-      })();"
-    >
-      Connect
-    </button>
+  <hr />
+</body>
 
-    <button
-      onclick="(async function () {
-        await window.marina.disable();
-      })();"
-    >
-      Disconnect
-    </button>
-
-    <hr />
-
-    <h1>My Watch-Only Liquid Wallet</h1>
-    <br />
-
-    <div id="balance">
-      <h2>Balance</h2>
-    </div>
-  </body>
 </html>
 
+```
+
+
+- Connect all the things
+
+```html
+<button onclick="(async function () {
+					// prompt user to enable
+        	await window.marina.enable();
+      })();">
+  Connect
+</button>
+
+<button onclick="(async function () {
+        await window.marina.disable();
+      })();">
+  Disconnect
+</button>
+```
+
+
+- Show Balances
+
+```html
+<script>
+    async function showBalances() {
+      const div = document.getElementById("balance");
+      const balances = await window.marina.getBalances();
+      balances.forEach((balance, index) => {
+        asset = document.createElement("p");
+        asset.textContent = balance.asset.ticker;
+        div.appendChild(asset);
+
+        amount = document.createElement("p");
+        amount.textContent = balance.amount;
+        asset.appendChild(amount);
+
+        separator = document.createElement("hr");
+        amount.appendChild(separator);
+      });
+    }
+  </script>
+
+  <button onclick="(async function () {
+	      // detect user permission and display balances
+				 window.marina.on('ENABLED', showBalances);
+					// prompt user to enable
+        	await window.marina.enable();
+      })();">
+  Connect
+</button>  
 ```
 
 
