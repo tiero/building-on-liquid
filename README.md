@@ -60,7 +60,7 @@ curl https://getnigiri.vulpem.com | bash
 nigiri start --liquid
 ```
 
-You can check Liquid Esplora running on [http://localhost:5000](http://localhost:5001)
+You can check Liquid Esplora running on [http://localhost:5001](http://localhost:5001)
 
 3. Send some L-BTC (to ourself)
 
